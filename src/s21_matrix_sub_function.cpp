@@ -1,4 +1,4 @@
-#include "s21_matrix_oop.h"
+#include "s21_matrix_oop.hpp"
 
 void S21Matrix::init_matrix() {
   _matrix = new double*[_rows];

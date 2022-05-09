@@ -1,4 +1,4 @@
-#include "s21_matrix_oop.h"
+#include "s21_matrix_oop.hpp"
 
 S21Matrix S21Matrix::operator+(const S21Matrix& other) {
   S21Matrix result(_rows, _cols);

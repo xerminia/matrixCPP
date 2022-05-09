@@ -1,4 +1,4 @@
-#include "s21_matrix_oop.h"
+#include "s21_matrix_oop.hpp"
 
 // Базовый конструктор
 S21Matrix::S21Matrix() {

@@ -19,6 +19,9 @@ s21_matrix_operator.o:
 s21_matrix_sub_function.o:
 	$(CC) $(CFILE) s21_matrix_sub_function.cpp -o s21_matrix_sub_function.o
 
+test.o:
+	$(CC) $(CFILE) test.cpp -o test.o
+
 s21_matrix_oop.a: $(OFILE)
 	ar rcs s21_matrix_oop.a $(OFILE)
 

@@ -2,9 +2,9 @@
 
 // Базовый конструктор
 S21Matrix::S21Matrix() {
-  _rows = 0;
-  _cols = 0;
-  _matrix = nullptr;
+  _rows = 3;
+  _cols = 3;
+  this->init_matrix();
 }
 
 // Параметризованный конструктор
@@ -21,15 +21,16 @@ S21Matrix::S21Matrix(int rows, int cols) {
 S21Matrix::S21Matrix(const S21Matrix& other) { this->copy_matrix(other); }
 
 // Конструктор перемещения
-S21Matrix::S21Matrix(S21Matrix&& other) {
-  std::swap(_rows, other._rows);
-  std::swap(_cols, other._cols);
-  std::swap(_matrix, other._matrix);
+S21Matrix::S21Matrix(S21Matrix&& other)
+    : _rows(other._rows), _cols(other._cols), _matrix(other._matrix) {
+  other._rows = 0;
+  other._cols = 0;
+  other._matrix = nullptr;
 }
 
 // Деструктор
 S21Matrix::~S21Matrix() {
-  if (_matrix != nullptr) {
+  if (_matrix) {
     for (int i = 0; i < _rows; i++) {
       delete[] _matrix[i];
     }

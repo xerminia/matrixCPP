@@ -20,8 +20,8 @@ void S21Matrix::copy_matrix(const S21Matrix& other) {
   }
 }
 
-int S21Matrix::getRows() { return _rows; }
-int S21Matrix::getCols() { return _cols; }
+int S21Matrix::getRows() const { return _rows; }
+int S21Matrix::getCols() const { return _cols; }
 
 void S21Matrix::setRows(int num) { _rows = num; }
 void S21Matrix::setCols(int num) { _cols = num; }

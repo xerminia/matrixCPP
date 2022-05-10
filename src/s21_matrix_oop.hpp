@@ -1,26 +1,19 @@
-#ifndef S21_MATRIX_OOP_H
-#define S21_MATRIX_OOP_H
+#ifndef SRC_S21_MATRIX_OOP_H_
+#define SRC_S21_MATRIX_OOP_H_
 
 #include <cmath>
 #include <iostream>
 
 class S21Matrix {
  private:
-  // Attributes
   int _rows, _cols;
   double** _matrix;
 
  public:
-  void setMatrix(int x, int y, double num);
-  double getMatrix(int x, int y);
-
-  int getRows();
-  int getCols();
+  int getRows() const;
+  int getCols() const;
   void setRows(int num);
   void setCols(int num);
-  void init_matrix();
-  void cut_one_rows_cols(const S21Matrix* other, int rows, int cols);
-  void copy_matrix(const S21Matrix& other);
 
   // Method
   S21Matrix();
@@ -40,6 +33,16 @@ class S21Matrix {
   double determinant();
   S21Matrix inverse_matrix();
 
+
+  void setMatrix(int x, int y, double num);
+  double getMatrix(int x, int y);
+
+  void init_matrix();
+  void cut_one_rows_cols(const S21Matrix* other, int rows, int cols);
+  void copy_matrix(const S21Matrix& other);
+
+
+
   // overload operator
   S21Matrix operator+(const S21Matrix& other);
   S21Matrix operator-(const S21Matrix& other);
@@ -51,7 +54,7 @@ class S21Matrix {
   S21Matrix& operator-=(const S21Matrix& other);
   S21Matrix& operator*=(const S21Matrix& other);
   S21Matrix& operator*=(const double num);
-  double operator()(int rows, int cols);
+  double& operator()(int rows, int cols) const;
 };
 
-#endif  // S21_MATRIX_OOP_H
+#endif  // SRC_S21_MATRIX_OOP_H_

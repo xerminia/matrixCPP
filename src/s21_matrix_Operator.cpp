@@ -35,6 +35,7 @@ bool S21Matrix::operator==(const S21Matrix& other) {
 S21Matrix& S21Matrix::operator=(const S21Matrix& other) {
   if (this != &other) {
     this->~S21Matrix();
+    this->init_matrix();
     this->copy_matrix(other);
   }
   return *this;
@@ -60,8 +61,8 @@ S21Matrix& S21Matrix::operator*=(const double num) {
   return *this;
 }
 
-double S21Matrix::operator()(int rows, int cols) {
-  if (_rows <= rows || _cols <= cols) {
+double& S21Matrix::operator()(int rows, int cols) const {
+  if (_rows <= rows || _cols <= cols || cols < 0 || rows < 0) {
     throw std::out_of_range("Incorrect input");
   }
   return _matrix[rows][cols];

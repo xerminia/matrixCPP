@@ -1,0 +1,7 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory `/Users/xerminia/Documents/matrix'
+ 
+make: Leaving directory `/Users/xerminia/Documents/matrix'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+

@@ -33,28 +33,24 @@ class S21Matrix {
   double determinant();
   S21Matrix inverse_matrix();
 
-
-  void setMatrix(int x, int y, double num);
-  double getMatrix(int x, int y);
-
-  void init_matrix();
-  void cut_one_rows_cols(const S21Matrix* other, int rows, int cols);
-  void copy_matrix(const S21Matrix& other);
-
-
-
   // overload operator
   S21Matrix operator+(const S21Matrix& other);
   S21Matrix operator-(const S21Matrix& other);
   S21Matrix operator*(const S21Matrix& other);
   S21Matrix operator*(const double num);
+  friend S21Matrix operator*(const double num, const S21Matrix& other);
   bool operator==(const S21Matrix& other);
   S21Matrix& operator=(const S21Matrix& other);
   S21Matrix& operator+=(const S21Matrix& other);
   S21Matrix& operator-=(const S21Matrix& other);
   S21Matrix& operator*=(const S21Matrix& other);
   S21Matrix& operator*=(const double num);
-  double& operator()(int rows, int cols) const;
+  double& operator()(int row, int col) const;
+
+ private:
+  void init_matrix(int rows, int cols);
+  void get_minor_matrix(const S21Matrix* other, int cut_row, int cut_col);
+  void copy_matrix(double** matrix);
 };
 
 #endif  // SRC_S21_MATRIX_OOP_H_

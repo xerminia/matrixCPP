@@ -5,8 +5,7 @@ GTESTFLAGS = -lgtest
 CPPFILE = s21_matrix_operation.cpp s21_matrix_oop.cpp s21_matrix_operator.cpp s21_matrix_sub_function.cpp
 OFILE = s21_matrix_operation.o s21_matrix_oop.o s21_matrix_operator.o s21_matrix_sub_function.o
 
-# all: clean s21_matrix_oop.a test
-all: clean check
+all: clean s21_matrix_oop.a test
 
 s21_matrix_operation.o:
 	$(CC) $(CFLAG) s21_matrix_operation.cpp -o s21_matrix_operation.o
@@ -41,9 +40,9 @@ clean:
 	rm -rf *.a *.o test gcov *.info report *.dSYM *.gc*
 
 check: test
-	# cp ../materials/linters/CPPLINT.cfg CPPLINT.cfg
-	# python3 ../materials/linters/cpplint.py --extensions=cpp *.cpp
-	# python3 ../materials/linters/cpplint.py --extensions=hpp *.hpp
-	# cppcheck --enable=all --suppress=missingIncludeSystem *.cpp *.hpp
+	cp ../materials/linters/CPPLINT.cfg CPPLINT.cfg
+	python3 ../materials/linters/cpplint.py --extensions=cpp *.cpp
+	python3 ../materials/linters/cpplint.py --extensions=hpp *.hpp
+	cppcheck --enable=all --suppress=missingIncludeSystem *.cpp *.hpp
 	CK_FORK=no leaks --atExit -- ./test
-	# rm -rf CPPLINT.cfg
+	rm -rf CPPLINT.cfg

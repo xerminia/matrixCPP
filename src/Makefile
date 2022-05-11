@@ -20,7 +20,7 @@ test: s21_matrix_oop.a test.o
 	$(CC) s21_matrix_oop.a test.o -o test $(GTESTFLAGS)
 	./test
 
-gcov_report: test.o
+gcov_report: clean test.o
 	$(CC) $(CFLAG) $(GCOVFLAG) s21_matrix_oop.cpp -o s21_matrix_oop.o
 	$(CC) $(GCOVFLAG) $(OFILE) test.o -o gcov $(GTESTFLAGS)
 	./gcov

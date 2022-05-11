@@ -230,7 +230,7 @@ double& S21Matrix::operator()(int row, int col) const {
 void S21Matrix::init_matrix(int rows, int cols) {
   _rows = rows;
   _cols = cols;
-  _matrix = new double*[_rows];
+  _matrix = new double*[_rows]();
   for (int i = 0; i < _rows; i++) {
     _matrix[i] = new double[_cols]();
   }

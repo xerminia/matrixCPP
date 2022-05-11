@@ -2,6 +2,7 @@
   "files.associations": {
     "stdexcept": "cpp",
     "__errc": "cpp",
-    "bitset": "cpp"
+    "bitset": "cpp",
+    "new": "cpp"
   }
 }

@@ -525,20 +525,20 @@ TEST(test_determinant, test_determinant_2) {
   matrixA(0, 2) = 3;
   matrixA(0, 3) = 4;
 
-  matrixA(1, 1) = 1;
-  matrixA(1, 2) = 2;
-  matrixA(1, 3) = 3;
-  matrixA(1, 4) = 4;
+  matrixA(1, 0) = 1;
+  matrixA(1, 1) = 2;
+  matrixA(1, 2) = 3;
+  matrixA(1, 3) = 4;
 
-  matrixA(2, 1) = 1;
-  matrixA(2, 2) = 2;
-  matrixA(2, 3) = 3;
-  matrixA(2, 4) = 4;
+  matrixA(2, 0) = 1;
+  matrixA(2, 1) = 2;
+  matrixA(2, 2) = 3;
+  matrixA(2, 3) = 4;
 
-  matrixA(3, 1) = 1;
-  matrixA(3, 2) = 2;
-  matrixA(3, 3) = 3;
-  matrixA(3, 4) = 4;
+  matrixA(3, 0) = 1;
+  matrixA(3, 1) = 2;
+  matrixA(3, 2) = 3;
+  matrixA(3, 3) = 4;
 
   // act
   double actual = matrixA.determinant();
@@ -569,12 +569,12 @@ TEST(test_determinant, test_determinant_4) {
   matrixA(0, 2) = 1;
 
   // act and assert
-  ASSERT_THROW(double actual = matrixA.determinant(), std::invalid_argument);
+  ASSERT_THROW(matrixA.determinant(), std::invalid_argument);
 }
 
 TEST(test_calc_complements, test_calc_complements_1) {
   // arrange
-  S21Matrix expected(3, 3);
+  S21Matrix expected;
   expected(0, 0) = 0;
   expected(0, 1) = 10;
   expected(0, 2) = -20;
@@ -740,37 +740,6 @@ TEST(test_operators, test_mul_operator_2) {
 
   // act
   S21Matrix actual = matrixA * val;
-
-  // assert
-  ASSERT_EQ(actual.getCols(), expected.getCols());
-
-  for (int i = 0; i < actual.getRows(); i++) {
-    for (int j = 0; j < actual.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), actual(i, j), 1e-7);
-    }
-  }
-}
-
-TEST(test_operators, test_mul_operator_3) {
-  // arrange
-  S21Matrix expected(2, 2);
-  expected(0, 0) = 4;
-  expected(0, 1) = 10;
-
-  expected(1, 0) = 12;
-  expected(1, 1) = 6;
-
-  S21Matrix matrixA(2, 2);
-  matrixA(0, 0) = 2;
-  matrixA(0, 1) = 5;
-
-  matrixA(1, 0) = 6;
-  matrixA(1, 1) = 3;
-
-  double val = 2;
-
-  // act
-  S21Matrix actual = val * matrixA;
 
   // assert
   ASSERT_EQ(actual.getCols(), expected.getCols());
@@ -1000,37 +969,6 @@ TEST(test_operators, test_addition_assignment_2) {
   ASSERT_THROW(matrixA += matrixB, std::invalid_argument);
 }
 
-TEST(test_operators, test_substraction_assignment_1) {
-  // arrange
-  S21Matrix expected(3, 2);
-  expected(0, 0) = 0;
-  expected(0, 1) = 0;
-  expected(1, 0) = 0;
-  expected(1, 1) = 0;
-  expected(2, 0) = 0;
-  expected(2, 1) = 0;
-
-  S21Matrix actual(3, 2);
-  actual(0, 0) = 1;
-  actual(0, 1) = 2;
-  actual(1, 0) = 3;
-  actual(1, 1) = 4;
-  actual(2, 0) = 4;
-  actual(2, 1) = 4;
-
-  // act
-  actual -= actual;
-
-  // assert
-  ASSERT_EQ(actual.getCols(), expected.getCols());
-
-  for (int i = 0; i < actual.getRows(); i++) {
-    for (int j = 0; j < actual.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), actual(i, j), 1e-7);
-    }
-  }
-}
-
 TEST(test_operators, test_substraction_assignment_2) {
   // arrange
   S21Matrix matrixA(3, 2);
@@ -1177,7 +1115,7 @@ TEST(test_operators, test_parathesis_4) {
   matrixA(1, 1) = 4;
 
   // act and assert
-  ASSERT_THROW(double a = matrixA(0, 5), std::out_of_range);
+  ASSERT_THROW(matrixA(0, 5), std::out_of_range);
 }
 
 TEST(test_getters, test_getters_1) {

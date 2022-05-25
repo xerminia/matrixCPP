@@ -184,12 +184,7 @@ S21Matrix S21Matrix::operator*(const double num) {
   return result;
 }
 
-bool S21Matrix::operator==(const S21Matrix& other) {
-  if (_rows != other._rows || _cols != other._cols) {
-    throw std::invalid_argument("Sizes of both Matrixes are not equal");
-  }
-  return eq_matrix(other);
-}
+bool S21Matrix::operator==(const S21Matrix& other) { return eq_matrix(other); }
 
 S21Matrix& S21Matrix::operator=(const S21Matrix& other) {
   if (this != &other) {

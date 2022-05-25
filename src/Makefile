@@ -36,5 +36,5 @@ check: test
 	python3 ../materials/linters/cpplint.py --extensions=cpp *.cpp
 	python3 ../materials/linters/cpplint.py --extensions=hpp *.hpp
 	cppcheck --enable=all --suppress=missingIncludeSystem *.cpp *.hpp
-	CK_FORK=no leaks --atExit -- ./test
+	CK_FORK=no leaks --atExit -- test
 	rm -rf CPPLINT.cfg

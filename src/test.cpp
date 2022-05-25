@@ -2,20 +2,17 @@
 
 #include "s21_matrix_oop.hpp"
 
-TEST(test_move_constructor, test_move_constructor_1) {
-  // arrange
+TEST(test_move_constructor, test_move_constructor1) {
   S21Matrix expected(1, 2);
-  expected(0, 0) = 1;
-  expected(0, 1) = 2;
+  expected(0, 0) = 5;
+  expected(0, 1) = 7;
 
   S21Matrix matrixA(1, 2);
-  matrixA(0, 0) = 1;
-  matrixA(0, 1) = 2;
+  matrixA(0, 0) = 5;
+  matrixA(0, 1) = 7;
 
-  // act
   S21Matrix matrixB(std::move(matrixA));
 
-  // assert
   ASSERT_EQ(matrixB.getCols(), expected.getCols());
 
   for (int i = 0; i < matrixB.getRows(); i++) {
@@ -25,25 +22,23 @@ TEST(test_move_constructor, test_move_constructor_1) {
   }
 }
 
-TEST(test_sum, test_sum_1) {
-  // arrange
+TEST(test_sum, test_sum1) {
   S21Matrix expected(2, 2);
-  expected(0, 0) = 2;
-  expected(0, 1) = 4;
-  expected(1, 0) = 6;
-  expected(1, 1) = 8;
+  expected(0, 0) = 10.2;
+  expected(0, 1) = 20.4;
+  expected(1, 0) = 30.6;
+  expected(1, 1) = 40.8;
 
   S21Matrix matrixA(2, 2);
-  matrixA(0, 0) = 1;
-  matrixA(0, 1) = 2;
-  matrixA(1, 0) = 3;
-  matrixA(1, 1) = 4;
+  matrixA(0, 0) = 5.1;
+  matrixA(0, 1) = 10.2;
+  matrixA(1, 0) = 15.3;
+  matrixA(1, 1) = 20.4;
+
   S21Matrix matrixB(matrixA);
 
-  // act
   matrixA.sum_matrix(matrixB);
 
-  // assert
   ASSERT_EQ(matrixA.getCols(), expected.getCols());
 
   for (int i = 0; i < matrixA.getRows(); i++) {
@@ -53,95 +48,7 @@ TEST(test_sum, test_sum_1) {
   }
 }
 
-TEST(test_sum, test_sum_2) {
-  // arrange
-  S21Matrix expected(2, 2);
-  expected(0, 0) = 2.1;
-  expected(0, 1) = 4;
-  expected(1, 0) = 6;
-  expected(1, 1) = 8;
-
-  S21Matrix matrixA(2, 2);
-  matrixA(0, 0) = 1.1;
-  matrixA(0, 1) = 2;
-  matrixA(1, 0) = 3;
-  matrixA(1, 1) = 4;
-  S21Matrix matrixB(2, 2);
-  matrixB(0, 0) = 1;
-  matrixB(0, 1) = 2;
-  matrixB(1, 0) = 3;
-  matrixB(1, 1) = 4;
-
-  // act
-  matrixA.sum_matrix(matrixB);
-
-  // assert
-  ASSERT_EQ(matrixA.getCols(), expected.getCols());
-
-  for (int i = 0; i < matrixA.getRows(); i++) {
-    for (int j = 0; j < matrixA.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), matrixA(i, j), 1e-7);
-    }
-  }
-}
-
-TEST(test_sum, test_sum_3) {
-  // arrange
-  S21Matrix matrixA(2, 1);
-  matrixA(0, 0) = 1.1;
-  matrixA(0, 1) = 3;
-  S21Matrix matrixB(3, 2);
-  matrixB(0, 0) = 1;
-  matrixB(0, 1) = 2;
-  matrixB(1, 0) = 3;
-  matrixB(1, 1) = 4;
-  matrixB(2, 0) = 4;
-  matrixB(2, 1) = 4;
-
-  // act and assert
-  ASSERT_THROW(matrixA.sum_matrix(matrixB), std::invalid_argument);
-}
-
-TEST(test_sum, test_sum_4) {
-  // arrange
-  S21Matrix expected(3, 2);
-  expected(0, 0) = 2.1;
-  expected(0, 1) = 4;
-  expected(1, 0) = 6;
-  expected(1, 1) = 8;
-  expected(2, 0) = 8;
-  expected(2, 1) = 8;
-
-  S21Matrix matrixA(3, 2);
-  matrixA(0, 0) = 1.1;
-  matrixA(0, 1) = 2;
-  matrixA(1, 0) = 3;
-  matrixA(1, 1) = 4;
-  matrixA(2, 0) = 4;
-  matrixA(2, 1) = 4;
-  S21Matrix matrixB(3, 2);
-  matrixB(0, 0) = 1;
-  matrixB(0, 1) = 2;
-  matrixB(1, 0) = 3;
-  matrixB(1, 1) = 4;
-  matrixB(2, 0) = 4;
-  matrixB(2, 1) = 4;
-
-  // act
-  matrixA.sum_matrix(matrixB);
-
-  // assert
-  ASSERT_EQ(matrixA.getCols(), expected.getCols());
-
-  for (int i = 0; i < matrixA.getRows(); i++) {
-    for (int j = 0; j < matrixA.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), matrixA(i, j), 1e-7);
-    }
-  }
-}
-
-TEST(test_sub, test_sub_1) {
-  // arrange
+TEST(test_sum, test_sum2) {
   S21Matrix expected(2, 2);
   expected(0, 0) = 0;
   expected(0, 1) = 0;
@@ -149,48 +56,19 @@ TEST(test_sub, test_sub_1) {
   expected(1, 1) = 0;
 
   S21Matrix matrixA(2, 2);
-  matrixA(0, 0) = 1;
-  matrixA(0, 1) = 2;
-  matrixA(1, 0) = 3;
-  matrixA(1, 1) = 4;
-  S21Matrix matrixB(matrixA);
+  matrixA(0, 0) = -1;
+  matrixA(0, 1) = -2;
+  matrixA(1, 0) = -3;
+  matrixA(1, 1) = -4;
 
-  // act
-  matrixA.sub_matrix(matrixB);
-
-  // assert
-  ASSERT_EQ(matrixA.getCols(), expected.getCols());
-
-  for (int i = 0; i < matrixA.getRows(); i++) {
-    for (int j = 0; j < matrixA.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), matrixA(i, j), 1e-7);
-    }
-  }
-}
-
-TEST(test_sub, test_sub_2) {
-  // arrange
-  S21Matrix expected(2, 2);
-  expected(0, 0) = 0.1;
-  expected(0, 1) = 0;
-  expected(1, 0) = 0;
-  expected(1, 1) = 0;
-
-  S21Matrix matrixA(2, 2);
-  matrixA(0, 0) = 1.1;
-  matrixA(0, 1) = 2;
-  matrixA(1, 0) = 3;
-  matrixA(1, 1) = 4;
   S21Matrix matrixB(2, 2);
   matrixB(0, 0) = 1;
   matrixB(0, 1) = 2;
   matrixB(1, 0) = 3;
   matrixB(1, 1) = 4;
 
-  // act
-  matrixA.sub_matrix(matrixB);
+  matrixA.sum_matrix(matrixB);
 
-  // assert
   ASSERT_EQ(matrixA.getCols(), expected.getCols());
 
   for (int i = 0; i < matrixA.getRows(); i++) {
@@ -200,53 +78,156 @@ TEST(test_sub, test_sub_2) {
   }
 }
 
-TEST(test_sub, test_sub_3) {
-  // arrange
+TEST(test_sum, test_sum3) {
   S21Matrix matrixA(2, 1);
-  matrixA(0, 0) = 1.1;
-  matrixA(0, 1) = 3;
+  matrixA(0, 0) = 5;
+  matrixA(0, 1) = 5;
+
   S21Matrix matrixB(3, 2);
   matrixB(0, 0) = 1;
   matrixB(0, 1) = 2;
   matrixB(1, 0) = 3;
   matrixB(1, 1) = 4;
-  matrixB(2, 0) = 4;
-  matrixB(2, 1) = 4;
+  matrixB(2, 0) = 5;
+  matrixB(2, 1) = 6;
 
-  // act and assert
-  ASSERT_THROW(matrixA.sub_matrix(matrixB), std::invalid_argument);
+  ASSERT_THROW(matrixA.sum_matrix(matrixB), std::invalid_argument);
 }
 
-TEST(test_sub, test_sub_4) {
-  // arrange
+TEST(test_sum, test_sum4) {
   S21Matrix expected(3, 2);
-  expected(0, 0) = 1;
+  expected(0, 0) = 5;
+  expected(0, 1) = 5;
+  expected(1, 0) = 5;
+  expected(1, 1) = 5;
+  expected(2, 0) = 5;
+  expected(2, 1) = 5;
+
+  S21Matrix matrixA(3, 2);
+  matrixA(0, 0) = 0;
+  matrixA(0, 1) = 1;
+  matrixA(1, 0) = 2;
+  matrixA(1, 1) = 3;
+  matrixA(2, 0) = 4;
+  matrixA(2, 1) = 5;
+
+  S21Matrix matrixB(3, 2);
+  matrixB(0, 0) = 5;
+  matrixB(0, 1) = 4;
+  matrixB(1, 0) = 3;
+  matrixB(1, 1) = 2;
+  matrixB(2, 0) = 1;
+  matrixB(2, 1) = 0;
+
+  matrixA.sum_matrix(matrixB);
+
+  ASSERT_EQ(matrixA.getCols(), expected.getCols());
+
+  for (int i = 0; i < matrixA.getRows(); i++) {
+    for (int j = 0; j < matrixA.getCols(); j++) {
+      ASSERT_NEAR(expected(i, j), matrixA(i, j), 1e-7);
+    }
+  }
+}
+
+TEST(test_sub, test_sub1) {
+  S21Matrix expected(2, 2);
+  expected(0, 0) = 0;
   expected(0, 1) = 0;
   expected(1, 0) = 0;
   expected(1, 1) = 0;
-  expected(2, 0) = 2;
-  expected(2, 1) = 1;
+
+  S21Matrix matrixA(2, 2);
+  matrixA(0, 0) = 10;
+  matrixA(0, 1) = 20;
+  matrixA(1, 0) = 30;
+  matrixA(1, 1) = 40;
+
+  S21Matrix matrixB(matrixA);
+  matrixA.sub_matrix(matrixB);
+
+  ASSERT_EQ(matrixA.getCols(), expected.getCols());
+
+  for (int i = 0; i < matrixA.getRows(); i++) {
+    for (int j = 0; j < matrixA.getCols(); j++) {
+      ASSERT_NEAR(expected(i, j), matrixA(i, j), 1e-7);
+    }
+  }
+}
+
+TEST(test_sub, test_sub2) {
+  S21Matrix expected(2, 2);
+  expected(0, 0) = 3;
+  expected(0, 1) = 1;
+  expected(1, 0) = -1;
+  expected(1, 1) = -3;
+
+  S21Matrix matrixA(2, 2);
+  matrixA(0, 0) = 5;
+  matrixA(0, 1) = 4;
+  matrixA(1, 0) = 3;
+  matrixA(1, 1) = 2;
+
+  S21Matrix matrixB(2, 2);
+  matrixB(0, 0) = 2;
+  matrixB(0, 1) = 3;
+  matrixB(1, 0) = 4;
+  matrixB(1, 1) = 5;
+
+  matrixA.sub_matrix(matrixB);
+
+  ASSERT_EQ(matrixA.getCols(), expected.getCols());
+
+  for (int i = 0; i < matrixA.getRows(); i++) {
+    for (int j = 0; j < matrixA.getCols(); j++) {
+      ASSERT_NEAR(expected(i, j), matrixA(i, j), 1e-7);
+    }
+  }
+}
+
+TEST(test_sub, test_sub3) {
+  S21Matrix matrixA(2, 1);
+  matrixA(0, 0) = 1;
+  matrixA(0, 1) = 2;
+
+  S21Matrix matrixB(3, 2);
+  matrixB(0, 0) = 3;
+  matrixB(0, 1) = 4;
+  matrixB(1, 0) = 5;
+  matrixB(1, 1) = 6;
+  matrixB(2, 0) = 7;
+  matrixB(2, 1) = 8;
+
+  ASSERT_THROW(matrixA.sub_matrix(matrixB), std::invalid_argument);
+}
+
+TEST(test_sub, test_sub4) {
+  S21Matrix expected(3, 2);
+  expected(0, 0) = -9;
+  expected(0, 1) = -8;
+  expected(1, 0) = -7;
+  expected(1, 1) = -26;
+  expected(2, 0) = -25;
+  expected(2, 1) = -24;
 
   S21Matrix matrixA(3, 2);
   matrixA(0, 0) = 1;
   matrixA(0, 1) = 2;
   matrixA(1, 0) = 3;
   matrixA(1, 1) = 4;
-  matrixA(2, 0) = 4;
-  matrixA(2, 1) = 4;
+  matrixA(2, 0) = 5;
+  matrixA(2, 1) = 6;
 
   S21Matrix matrixB(3, 2);
-  matrixB(0, 0) = 0;
-  matrixB(0, 1) = 2;
-  matrixB(1, 0) = 3;
-  matrixB(1, 1) = 4;
-  matrixB(2, 0) = 2;
-  matrixB(2, 1) = 3;
+  matrixB(0, 0) = 10;
+  matrixB(0, 1) = 10;
+  matrixB(1, 0) = 10;
+  matrixB(1, 1) = 30;
+  matrixB(2, 0) = 30;
+  matrixB(2, 1) = 30;
 
-  // act
   matrixA.sub_matrix(matrixB);
 
-  // assert
   ASSERT_EQ(matrixA.getCols(), expected.getCols());
 
   for (int i = 0; i < matrixA.getRows(); i++) {
@@ -256,30 +237,25 @@ TEST(test_sub, test_sub_4) {
   }
 }
 
-TEST(test_mul_num, test_mul_num_1) {
-  // arrange
+TEST(test_mul_num, test_mul_num1) {
   S21Matrix expected(3, 2);
   expected(0, 0) = 4;
   expected(0, 1) = 8;
   expected(1, 0) = 12;
   expected(1, 1) = 16;
-  expected(2, 0) = 16;
-  expected(2, 1) = 16;
+  expected(2, 0) = 20;
+  expected(2, 1) = 24;
 
   S21Matrix matrixA(3, 2);
   matrixA(0, 0) = 1;
   matrixA(0, 1) = 2;
   matrixA(1, 0) = 3;
   matrixA(1, 1) = 4;
-  matrixA(2, 0) = 4;
-  matrixA(2, 1) = 4;
+  matrixA(2, 0) = 5;
+  matrixA(2, 1) = 6;
 
-  double val = 4;
+  matrixA.mul_number(4);
 
-  // act
-  matrixA.mul_number(val);
-
-  // assert
   ASSERT_EQ(matrixA.getCols(), expected.getCols());
 
   for (int i = 0; i < matrixA.getRows(); i++) {
@@ -289,30 +265,41 @@ TEST(test_mul_num, test_mul_num_1) {
   }
 }
 
-TEST(test_mul_num, test_mul_num_2) {
-  // arrange
-  S21Matrix expected(3, 2);
+TEST(test_mul_num, test_mul_num2) {
+  S21Matrix expected(3, 4);
   expected(0, 0) = -1;
   expected(0, 1) = -2;
-  expected(1, 0) = -3;
-  expected(1, 1) = -4;
-  expected(2, 0) = -4;
-  expected(2, 1) = -4;
+  expected(0, 2) = -3;
+  expected(0, 3) = -4;
 
-  S21Matrix matrixA(3, 2);
+  expected(1, 0) = -5;
+  expected(1, 1) = -6;
+  expected(1, 2) = -7;
+  expected(1, 3) = -8;
+
+  expected(2, 0) = -9;
+  expected(2, 1) = -10;
+  expected(2, 2) = -11;
+  expected(2, 3) = -12;
+
+  S21Matrix matrixA(3, 4);
   matrixA(0, 0) = 1;
   matrixA(0, 1) = 2;
-  matrixA(1, 0) = 3;
-  matrixA(1, 1) = 4;
-  matrixA(2, 0) = 4;
-  matrixA(2, 1) = 4;
+  matrixA(0, 2) = 3;
+  matrixA(0, 3) = 4;
 
-  double val = -1;
+  matrixA(1, 0) = 5;
+  matrixA(1, 1) = 6;
+  matrixA(1, 2) = 7;
+  matrixA(1, 3) = 8;
 
-  // act
-  matrixA.mul_number(val);
+  matrixA(2, 0) = 9;
+  matrixA(2, 1) = 10;
+  matrixA(2, 2) = 11;
+  matrixA(2, 3) = 12;
 
-  // assert
+  matrixA.mul_number(-1);
+
   ASSERT_EQ(matrixA.getCols(), expected.getCols());
 
   for (int i = 0; i < matrixA.getRows(); i++) {
@@ -322,77 +309,7 @@ TEST(test_mul_num, test_mul_num_2) {
   }
 }
 
-TEST(test_eq, test_eq_1) {
-  // arrange
-  bool expected = true;
-
-  S21Matrix matrixA(3, 2);
-  matrixA(0, 0) = 1;
-  matrixA(0, 1) = 2;
-  matrixA(1, 0) = 3;
-  matrixA(1, 1) = 4;
-  matrixA(2, 0) = 4;
-  matrixA(2, 1) = 4;
-
-  S21Matrix matrixB(3, 2);
-  matrixB(0, 0) = 1;
-  matrixB(0, 1) = 2;
-  matrixB(1, 0) = 3;
-  matrixB(1, 1) = 4;
-  matrixB(2, 0) = 4;
-  matrixB(2, 1) = 4;
-
-  // act
-  bool actual = matrixA.eq_matrix(matrixB);
-
-  // assert
-  ASSERT_EQ(expected, actual);
-}
-
-TEST(test_eq, test_eq_2) {
-  // arrange
-  bool expected = false;
-
-  S21Matrix matrixA(3, 2);
-  matrixA(0, 0) = 1;
-  matrixA(0, 1) = 2;
-  matrixA(1, 0) = 3;
-  matrixA(1, 1) = 4;
-  matrixA(2, 0) = 4;
-  matrixA(2, 1) = 4;
-
-  S21Matrix matrixB(3, 2);
-  matrixB(0, 0) = 1;
-  matrixB(0, 1) = 1;
-  matrixB(1, 0) = 3;
-  matrixB(1, 1) = 4;
-  matrixB(2, 0) = 4;
-  matrixB(2, 1) = 4;
-
-  // act
-  bool actual = matrixA.eq_matrix(matrixB);
-
-  // assert
-  ASSERT_EQ(expected, actual);
-}
-
-TEST(test_eq, test_eq_3) {
-  // arrange
-  bool expected = false;
-
-  S21Matrix matrixA(3, 2);
-
-  S21Matrix matrixB(3, 3);
-
-  // act
-  bool actual = matrixA.eq_matrix(matrixB);
-
-  // assert
-  ASSERT_EQ(expected, actual);
-}
-
-TEST(test_mul, test_mul_1) {
-  // arrange
+TEST(test_mul, test_mul1) {
   S21Matrix expected(2, 2);
   expected(0, 0) = 7;
   expected(0, 1) = 10;
@@ -404,16 +321,15 @@ TEST(test_mul, test_mul_1) {
   matrixA(0, 1) = 2;
   matrixA(1, 0) = 3;
   matrixA(1, 1) = 4;
+
   S21Matrix matrixB(2, 2);
   matrixB(0, 0) = 1;
   matrixB(0, 1) = 2;
   matrixB(1, 0) = 3;
   matrixB(1, 1) = 4;
 
-  // act
   matrixA.mul_matrix(matrixB);
 
-  // assert
   ASSERT_EQ(matrixA.getCols(), expected.getCols());
 
   for (int i = 0; i < matrixA.getRows(); i++) {
@@ -423,8 +339,7 @@ TEST(test_mul, test_mul_1) {
   }
 }
 
-TEST(test_mul, test_mul_2) {
-  // arrange
+TEST(test_mul, test_mul2) {
   S21Matrix expected(1, 3);
   expected(0, 0) = 29;
   expected(0, 1) = 42.2;
@@ -433,6 +348,7 @@ TEST(test_mul, test_mul_2) {
   S21Matrix matrixA(1, 2);
   matrixA(0, 0) = 5;
   matrixA(0, 1) = 1;
+
   S21Matrix matrixB(2, 3);
   matrixB(0, 0) = 4;
   matrixB(0, 1) = 8;
@@ -441,10 +357,8 @@ TEST(test_mul, test_mul_2) {
   matrixB(1, 1) = 2.2;
   matrixB(1, 2) = 15;
 
-  // act
   matrixA.mul_matrix(matrixB);
 
-  // assert
   ASSERT_EQ(matrixA.getCols(), expected.getCols());
 
   for (int i = 0; i < matrixA.getRows(); i++) {
@@ -454,11 +368,11 @@ TEST(test_mul, test_mul_2) {
   }
 }
 
-TEST(test_mul, test_mul_3) {
-  // arrange
+TEST(test_mul, test_mul3) {
   S21Matrix matrixA(2, 1);
   matrixA(0, 0) = 1.1;
   matrixA(0, 1) = 3;
+
   S21Matrix matrixB(3, 2);
   matrixB(0, 0) = 1;
   matrixB(0, 1) = 2;
@@ -467,12 +381,63 @@ TEST(test_mul, test_mul_3) {
   matrixB(2, 0) = 4;
   matrixB(2, 1) = 4;
 
-  // act and assert
   ASSERT_THROW(matrixA.mul_matrix(matrixB), std::invalid_argument);
 }
 
-TEST(test_transpose, test_transpose_1) {
-  // arrange
+TEST(test_eq, test_eq1) {
+  bool expected = true;
+
+  S21Matrix matrixA(3, 2);
+  matrixA(0, 0) = 1.1;
+  matrixA(0, 1) = 2.2;
+  matrixA(1, 0) = 3.3;
+  matrixA(1, 1) = 4.4;
+  matrixA(2, 0) = 5.5;
+  matrixA(2, 1) = 6.6;
+
+  S21Matrix matrixB(3, 2);
+  matrixB(0, 0) = 1.1;
+  matrixB(0, 1) = 2.2;
+  matrixB(1, 0) = 3.3;
+  matrixB(1, 1) = 4.4;
+  matrixB(2, 0) = 5.5;
+  matrixB(2, 1) = 6.6;
+
+  ASSERT_EQ(expected, matrixA.eq_matrix(matrixB));
+}
+
+TEST(test_eq, test_eq2) {
+  bool expected = false;
+
+  S21Matrix matrixA(3, 2);
+  matrixA(0, 0) = 0;
+  matrixA(0, 1) = 1;
+  matrixA(1, 0) = 2;
+  matrixA(1, 1) = 3;
+  matrixA(2, 0) = 4;
+  matrixA(2, 1) = 5;
+
+  S21Matrix matrixB(3, 2);
+  matrixB(0, 0) = 1;
+  matrixB(0, 1) = 2;
+  matrixB(1, 0) = 3;
+  matrixB(1, 1) = 4;
+  matrixB(2, 0) = 5;
+  matrixB(2, 1) = 6;
+
+  ASSERT_EQ(expected, matrixA.eq_matrix(matrixB));
+}
+
+TEST(test_eq, test_eq3) {
+  bool expected = false;
+
+  S21Matrix matrixA(3, 2);
+  S21Matrix matrixB(3, 3);
+
+  ASSERT_EQ(expected, matrixA.eq_matrix(matrixB));
+}
+
+TEST(test_transpose, test_transpose1) {
   S21Matrix expected(2, 2);
   expected(0, 0) = 1;
   expected(0, 1) = 3;
@@ -485,10 +450,8 @@ TEST(test_transpose, test_transpose_1) {
   matrixA(1, 0) = 3;
   matrixA(1, 1) = 4;
 
-  // act
   S21Matrix actual = matrixA.transpose();
 
-  // assert
   ASSERT_EQ(actual.getCols(), expected.getCols());
 
   for (int i = 0; i < actual.getRows(); i++) {
@@ -498,82 +461,81 @@ TEST(test_transpose, test_transpose_1) {
   }
 }
 
-TEST(test_determinant, test_determinant_1) {
-  // arrange
-  double expected = -2;
+TEST(test_determinant, test_determinant1) {
+  double expected = -40;
 
-  S21Matrix matrixA(2, 2);
+  S21Matrix matrixA(3, 3);
   matrixA(0, 0) = 1;
   matrixA(0, 1) = 2;
-  matrixA(1, 0) = 3;
+  matrixA(0, 2) = 3;
+
+  matrixA(1, 0) = 0;
   matrixA(1, 1) = 4;
+  matrixA(1, 2) = 2;
 
-  // act
-  double actual = matrixA.determinant();
+  matrixA(2, 0) = 5;
+  matrixA(2, 1) = 2;
+  matrixA(2, 2) = 1;
 
-  // assert
-  ASSERT_EQ(actual, expected);
+  ASSERT_EQ(expected, matrixA.determinant());
 }
 
-TEST(test_determinant, test_determinant_2) {
-  // arrange
-  double expected = 0;
+TEST(test_determinant, test_determinant2) {
+  double expected = -7900;
 
-  S21Matrix matrixA(4, 4);
+  S21Matrix matrixA(5, 5);
   matrixA(0, 0) = 1;
   matrixA(0, 1) = 2;
   matrixA(0, 2) = 3;
   matrixA(0, 3) = 4;
+  matrixA(0, 4) = 3;
 
-  matrixA(1, 0) = 1;
-  matrixA(1, 1) = 2;
-  matrixA(1, 2) = 3;
-  matrixA(1, 3) = 4;
+  matrixA(1, 0) = 0;
+  matrixA(1, 1) = 4;
+  matrixA(1, 2) = 2;
+  matrixA(1, 3) = 3;
+  matrixA(1, 4) = 13;
 
-  matrixA(2, 0) = 1;
+  matrixA(2, 0) = 5;
   matrixA(2, 1) = 2;
-  matrixA(2, 2) = 3;
-  matrixA(2, 3) = 4;
+  matrixA(2, 2) = 1;
+  matrixA(2, 3) = 3;
+  matrixA(2, 4) = 3;
 
-  matrixA(3, 0) = 1;
-  matrixA(3, 1) = 2;
-  matrixA(3, 2) = 3;
-  matrixA(3, 3) = 4;
+  matrixA(3, 0) = 5;
+  matrixA(3, 1) = 12;
+  matrixA(3, 2) = 1;
+  matrixA(3, 3) = 3;
+  matrixA(3, 4) = 3;
 
-  // act
-  double actual = matrixA.determinant();
+  matrixA(4, 0) = 5;
+  matrixA(4, 1) = 2;
+  matrixA(4, 2) = 1;
+  matrixA(4, 3) = 8;
+  matrixA(4, 4) = 3;
 
-  // assert
-  ASSERT_EQ(actual, expected);
+  ASSERT_EQ(matrixA.determinant(), expected);
 }
 
-TEST(test_determinant, test_determinant_3) {
-  // arrange
+TEST(test_determinant, test_determinant3) {
   double expected = 1;
 
   S21Matrix matrixA(1, 1);
   matrixA(0, 0) = 1;
 
-  // act
-  double actual = matrixA.determinant();
-
-  // assert
-  ASSERT_EQ(actual, expected);
+  ASSERT_EQ(matrixA.determinant(), expected);
 }
 
-TEST(test_determinant, test_determinant_4) {
-  // arrange
+TEST(test_determinant, test_determinant4) {
   S21Matrix matrixA(1, 3);
   matrixA(0, 0) = 1;
   matrixA(0, 1) = 1;
   matrixA(0, 2) = 1;
 
-  // act and assert
   ASSERT_THROW(matrixA.determinant(), std::invalid_argument);
 }
 
-TEST(test_calc_complements, test_calc_complements_1) {
-  // arrange
+TEST(test_calc_complements, test_calc_complements1) {
   S21Matrix expected;
   expected(0, 0) = 0;
   expected(0, 1) = 10;
@@ -600,10 +562,8 @@ TEST(test_calc_complements, test_calc_complements_1) {
   matrixA(2, 1) = 2;
   matrixA(2, 2) = 1;
 
-  // act
   S21Matrix actual = matrixA.calc_complements();
 
-  // assert
   ASSERT_EQ(actual.getCols(), expected.getCols());
 
   for (int i = 0; i < actual.getRows(); i++) {
@@ -613,24 +573,19 @@ TEST(test_calc_complements, test_calc_complements_1) {
   }
 }
 
-TEST(test_calc_complements, test_calc_complements_2) {
-  // arrange
+TEST(test_calc_complements, test_calc_complements2) {
   S21Matrix matrixA(3, 2);
   matrixA(0, 0) = 1;
   matrixA(0, 1) = 2;
-
   matrixA(1, 0) = 0;
   matrixA(1, 1) = 4;
-
   matrixA(2, 0) = 5;
   matrixA(2, 1) = 2;
 
-  // act and assert
   ASSERT_THROW(matrixA.calc_complements(), std::invalid_argument);
 }
 
-TEST(test_inverse_matrix, test_inverse_matrix_1) {
-  // arrange
+TEST(test_inverse_matrix, test_inverse_matrix1) {
   S21Matrix expected(3, 3);
   expected(0, 0) = 1;
   expected(0, 1) = -1;
@@ -657,10 +612,8 @@ TEST(test_inverse_matrix, test_inverse_matrix_1) {
   matrixA(2, 1) = -2;
   matrixA(2, 2) = -3;
 
-  // act
   S21Matrix actual = matrixA.inverse_matrix();
 
-  // assert
   ASSERT_EQ(actual.getCols(), expected.getCols());
 
   for (int i = 0; i < actual.getRows(); i++) {
@@ -670,8 +623,7 @@ TEST(test_inverse_matrix, test_inverse_matrix_1) {
   }
 }
 
-TEST(test_inverse_matrix, test_inverse_matrix_2) {
-  // arrange
+TEST(test_inverse_matrix, test_inverse_matrix2) {
   S21Matrix matrixA(3, 3);
   matrixA(0, 0) = 1;
   matrixA(0, 1) = 2;
@@ -685,32 +637,25 @@ TEST(test_inverse_matrix, test_inverse_matrix_2) {
   matrixA(2, 1) = 2;
   matrixA(2, 2) = 3;
 
-  // act and assert
   ASSERT_THROW(matrixA.inverse_matrix(), std::invalid_argument);
 }
 
 TEST(test_operators, test_mul_operator_1) {
-  // arrange
   S21Matrix expected(2, 2);
   expected(0, 0) = 34;
   expected(0, 1) = 25;
-
   expected(1, 0) = 30;
   expected(1, 1) = 39;
 
   S21Matrix matrixA(2, 2);
   matrixA(0, 0) = 2;
   matrixA(0, 1) = 5;
-
   matrixA(1, 0) = 6;
   matrixA(1, 1) = 3;
 
   S21Matrix matrixB(matrixA);
-
-  // act
   S21Matrix actual = matrixA * matrixB;
 
-  // assert
   ASSERT_EQ(actual.getCols(), expected.getCols());
 
   for (int i = 0; i < actual.getRows(); i++) {
@@ -720,28 +665,21 @@ TEST(test_operators, test_mul_operator_1) {
   }
 }
 
-TEST(test_operators, test_mul_operator_2) {
-  // arrange
+TEST(test_operators, test_mul_operator2) {
   S21Matrix expected(2, 2);
   expected(0, 0) = 4;
   expected(0, 1) = 10;
-
   expected(1, 0) = 12;
   expected(1, 1) = 6;
 
   S21Matrix matrixA(2, 2);
   matrixA(0, 0) = 2;
   matrixA(0, 1) = 5;
-
   matrixA(1, 0) = 6;
   matrixA(1, 1) = 3;
 
-  double val = 2;
+  S21Matrix actual = matrixA * 2;
 
-  // act
-  S21Matrix actual = matrixA * val;
-
-  // assert
   ASSERT_EQ(actual.getCols(), expected.getCols());
 
   for (int i = 0; i < actual.getRows(); i++) {
@@ -751,44 +689,35 @@ TEST(test_operators, test_mul_operator_2) {
   }
 }
 
-TEST(test_operators, test_mul_operator_4) {
-  // arrange
+TEST(test_operators, test_mul_operator3) {
   S21Matrix matrixA(2, 2);
   matrixA(0, 0) = 2;
   matrixA(0, 1) = 5;
-
   matrixA(1, 0) = 6;
   matrixA(1, 1) = 3;
 
   S21Matrix matrixB(1, 1);
   matrixB(0, 0) = 2;
 
-  // act and assert
   ASSERT_THROW(matrixA * matrixB, std::invalid_argument);
 }
 
-TEST(test_operators, test_sum_operator_1) {
-  // arrange
+TEST(test_operators, test_sum_operator1) {
   S21Matrix expected(2, 2);
   expected(0, 0) = 4;
   expected(0, 1) = 10;
-
-  expected(1, 0) = 12;
-  expected(1, 1) = 6;
+  expected(1, 0) = 4;
+  expected(1, 1) = 20;
 
   S21Matrix matrixA(2, 2);
   matrixA(0, 0) = 2;
   matrixA(0, 1) = 5;
-
-  matrixA(1, 0) = 6;
-  matrixA(1, 1) = 3;
+  matrixA(1, 0) = 2;
+  matrixA(1, 1) = 10;
 
   S21Matrix matrixB(matrixA);
-
-  // act
   S21Matrix actual = matrixA + matrixB;
 
-  // assert
   ASSERT_EQ(actual.getCols(), expected.getCols());
 
   for (int i = 0; i < actual.getRows(); i++) {
@@ -798,12 +727,10 @@ TEST(test_operators, test_sum_operator_1) {
   }
 }
 
-TEST(test_operators, test_sum_operator_2) {
-  // arrange
+TEST(test_operators, test_sum_operator2) {
   S21Matrix matrixA(2, 2);
   matrixA(0, 0) = 2;
   matrixA(0, 1) = 5;
-
   matrixA(1, 0) = 6;
   matrixA(1, 1) = 3;
 
@@ -811,32 +738,25 @@ TEST(test_operators, test_sum_operator_2) {
   matrixB(0, 0) = 2;
   matrixB(0, 1) = 5;
 
-  // act and assert
   ASSERT_THROW(matrixA + matrixB, std::invalid_argument);
 }
 
-TEST(test_operators, test_sub_operator_1) {
-  // arrange
+TEST(test_operators, test_sub_operator1) {
   S21Matrix expected(2, 2);
   expected(0, 0) = 0;
   expected(0, 1) = 0;
-
   expected(1, 0) = 0;
   expected(1, 1) = 0;
 
   S21Matrix matrixA(2, 2);
-  matrixA(0, 0) = 2;
-  matrixA(0, 1) = 5;
-
-  matrixA(1, 0) = 6;
-  matrixA(1, 1) = 3;
+  matrixA(0, 0) = 20;
+  matrixA(0, 1) = 50;
+  matrixA(1, 0) = 20;
+  matrixA(1, 1) = 60;
 
   S21Matrix matrixB(matrixA);
-
-  // act
   S21Matrix actual = matrixA - matrixB;
 
-  // assert
   ASSERT_EQ(actual.getCols(), expected.getCols());
 
   for (int i = 0; i < actual.getRows(); i++) {
@@ -846,12 +766,10 @@ TEST(test_operators, test_sub_operator_1) {
   }
 }
 
-TEST(test_operators, test_sub_operator_2) {
-  // arrange
+TEST(test_operators, test_sub_operator2) {
   S21Matrix matrixA(2, 2);
   matrixA(0, 0) = 2;
   matrixA(0, 1) = 5;
-
   matrixA(1, 0) = 6;
   matrixA(1, 1) = 3;
 
@@ -859,12 +777,10 @@ TEST(test_operators, test_sub_operator_2) {
   matrixB(0, 0) = 2;
   matrixB(0, 1) = 5;
 
-  // act and assert
   ASSERT_THROW(matrixA - matrixB, std::invalid_argument);
 }
 
-TEST(test_operators, test_eq_1) {
-  // arrange
+TEST(test_operators, test_eq1) {
   bool expected = true;
 
   S21Matrix matrixA(3, 2);
@@ -883,15 +799,12 @@ TEST(test_operators, test_eq_1) {
   matrixB(2, 0) = 4;
   matrixB(2, 1) = 4;
 
-  // act
   bool actual = matrixA == matrixB;
 
-  // assert
   ASSERT_EQ(expected, actual);
 }
 
-TEST(test_operators, test_assignment_1) {
-  // arrange
+TEST(test_operators, test_assignment1) {
   S21Matrix expected(3, 2);
   expected(0, 0) = 1;
   expected(0, 1) = 2;
@@ -908,10 +821,8 @@ TEST(test_operators, test_assignment_1) {
   matrixA(2, 0) = 4;
   matrixA(2, 1) = 4;
 
-  // act
   S21Matrix actual = matrixA;
 
-  // assert
   ASSERT_EQ(actual.getCols(), expected.getCols());
 
   for (int i = 0; i < actual.getRows(); i++) {
@@ -921,8 +832,7 @@ TEST(test_operators, test_assignment_1) {
   }
 }
 
-TEST(test_operators, test_addition_assignment_1) {
-  // arrange
+TEST(test_operators, test_addition_assignment1) {
   S21Matrix expected(3, 2);
   expected(0, 0) = 2;
   expected(0, 1) = 4;
@@ -939,10 +849,8 @@ TEST(test_operators, test_addition_assignment_1) {
   actual(2, 0) = 4;
   actual(2, 1) = 4;
 
-  // act
   actual += actual;
 
-  // assert
   ASSERT_EQ(actual.getCols(), expected.getCols());
 
   for (int i = 0; i < actual.getRows(); i++) {
@@ -952,8 +860,7 @@ TEST(test_operators, test_addition_assignment_1) {
   }
 }
 
-TEST(test_operators, test_addition_assignment_2) {
-  // arrange
+TEST(test_operators, test_addition_assignment2) {
   S21Matrix matrixA(3, 2);
   matrixA(0, 0) = 2;
   matrixA(0, 1) = 4;
@@ -965,12 +872,10 @@ TEST(test_operators, test_addition_assignment_2) {
   S21Matrix matrixB(1, 1);
   matrixB(0, 0) = 1;
 
-  // act and assert
   ASSERT_THROW(matrixA += matrixB, std::invalid_argument);
 }
 
-TEST(test_operators, test_substraction_assignment_2) {
-  // arrange
+TEST(test_operators, test_substraction_assignment2) {
   S21Matrix matrixA(3, 2);
   matrixA(0, 0) = 2;
   matrixA(0, 1) = 4;
@@ -982,12 +887,10 @@ TEST(test_operators, test_substraction_assignment_2) {
   S21Matrix matrixB(1, 1);
   matrixB(0, 0) = 1;
 
-  // act and assert
   ASSERT_THROW(matrixA -= matrixB, std::invalid_argument);
 }
 
-TEST(test_operators, test_multiplication_assignment_1) {
-  // arrange
+TEST(test_operators, test_multiplication_assignment1) {
   S21Matrix expected(2, 2);
   expected(0, 0) = 9;
   expected(0, 1) = 10;
@@ -1000,10 +903,8 @@ TEST(test_operators, test_multiplication_assignment_1) {
   actual(1, 0) = 4;
   actual(1, 1) = 4;
 
-  // act
   actual *= actual;
 
-  // assert
   ASSERT_EQ(actual.getCols(), expected.getCols());
 
   for (int i = 0; i < actual.getRows(); i++) {
@@ -1013,8 +914,7 @@ TEST(test_operators, test_multiplication_assignment_1) {
   }
 }
 
-TEST(test_operators, test_multiplication_assignment_2) {
-  // arrange
+TEST(test_operators, test_multiplication_assignment2) {
   S21Matrix expected(2, 2);
   expected(0, 0) = 2;
   expected(0, 1) = 4;
@@ -1027,12 +927,8 @@ TEST(test_operators, test_multiplication_assignment_2) {
   actual(1, 0) = 4;
   actual(1, 1) = 4;
 
-  double val = 2;
+  actual *= 2;
 
-  // act
-  actual *= val;
-
-  // assert
   ASSERT_EQ(actual.getCols(), expected.getCols());
 
   for (int i = 0; i < actual.getRows(); i++) {
@@ -1042,8 +938,7 @@ TEST(test_operators, test_multiplication_assignment_2) {
   }
 }
 
-TEST(test_operators, test_multiplication_assignment_3) {
-  // arrange
+TEST(test_operators, test_multiplication_assignment3) {
   S21Matrix matrixA(3, 2);
   matrixA(0, 0) = 2;
   matrixA(0, 1) = 4;
@@ -1055,12 +950,10 @@ TEST(test_operators, test_multiplication_assignment_3) {
   S21Matrix matrixB(1, 1);
   matrixB(0, 0) = 1;
 
-  // act and assert
   ASSERT_THROW(matrixA *= matrixB, std::invalid_argument);
 }
 
-TEST(test_operators, test_parathesis_1) {
-  // arrange
+TEST(test_operators, test_parathesis1) {
   double expected = 2;
 
   S21Matrix matrixA(2, 2);
@@ -1069,15 +962,12 @@ TEST(test_operators, test_parathesis_1) {
   matrixA(1, 0) = 4;
   matrixA(1, 1) = 4;
 
-  // act
   double actual = matrixA(0, 1);
 
-  // assert
   ASSERT_EQ(actual, expected);
 }
 
-TEST(test_operators, test_parathesis_2) {
-  // arrange
+TEST(test_operators, test_parathesis2) {
   double expected = 5;
 
   S21Matrix matrixA(2, 2);
@@ -1086,104 +976,85 @@ TEST(test_operators, test_parathesis_2) {
   matrixA(1, 0) = 4;
   matrixA(1, 1) = 4;
 
-  // act
   matrixA(0, 1) = 5;
   double actual = matrixA(0, 1);
 
-  // assert
   ASSERT_EQ(actual, expected);
 }
 
-TEST(test_operators, test_parathesis_3) {
-  // arrange
+TEST(test_operators, test_parathesis3) {
   S21Matrix matrixA(2, 2);
   matrixA(0, 0) = 1;
   matrixA(0, 1) = 2;
   matrixA(1, 0) = 4;
   matrixA(1, 1) = 4;
 
-  // act and assert
   ASSERT_THROW(matrixA(0, 5) = 2, std::out_of_range);
 }
 
-TEST(test_operators, test_parathesis_4) {
-  // arrange
+TEST(test_operators, test_parathesis4) {
   S21Matrix matrixA(2, 2);
   matrixA(0, 0) = 1;
   matrixA(0, 1) = 2;
   matrixA(1, 0) = 4;
   matrixA(1, 1) = 4;
 
-  // act and assert
   ASSERT_THROW(matrixA(0, 5), std::out_of_range);
 }
 
-TEST(test_getters, test_getters_1) {
-  // arrange
+TEST(test_getters, test_getters1) {
   double expected = 2;
 
   S21Matrix matrixA(2, 1);
   matrixA(0, 0) = 1;
   matrixA(1, 0) = 4;
 
-  // act
   double actual = matrixA.getRows();
 
-  // assert
   ASSERT_EQ(actual, expected);
 }
 
-TEST(test_getters, test_getters_2) {
-  // arrange
+TEST(test_getters, test_getters2) {
   double expected = 1;
 
   S21Matrix matrixA(2, 1);
   matrixA(0, 0) = 1;
   matrixA(1, 0) = 4;
 
-  // act
   double actual = matrixA.getCols();
 
-  // assert
   ASSERT_EQ(actual, expected);
 }
 
-TEST(test_setters, test_setters_1) {
-  // arrange
+TEST(test_setters, test_setters1) {
   double expected = 3;
 
   S21Matrix matrixA(2, 1);
   matrixA(0, 0) = 1;
   matrixA(1, 0) = 4;
 
-  // act
   matrixA.setRows(3);
   double actual = matrixA.getRows();
   matrixA.setRows(2);
 
-  // assert
   ASSERT_EQ(actual, expected);
 }
 
-TEST(test_setters, test_setters_2) {
-  // arrange
+TEST(test_setters, test_setters2) {
   double expected = 3;
 
   S21Matrix matrixA(2, 1);
   matrixA(0, 0) = 1;
   matrixA(1, 0) = 4;
 
-  // act
   matrixA.setCols(3);
   double actual = matrixA.getCols();
   matrixA.setCols(1);
 
-  // assert
   ASSERT_EQ(actual, expected);
 }
 
 TEST(test_constructor, test_constructor_throw) {
-  // act
   ASSERT_THROW(S21Matrix matrixA(-1, 2), std::out_of_range);
 }
 

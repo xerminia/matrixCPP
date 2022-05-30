@@ -4,6 +4,8 @@
 #include <cmath>
 #include <iostream>
 
+const double EPS = 1e-7;
+
 class S21Matrix {
  private:
   int _rows, _cols;
@@ -38,6 +40,7 @@ class S21Matrix {
   S21Matrix operator-(const S21Matrix& other);
   S21Matrix operator*(const S21Matrix& other);
   S21Matrix operator*(const double num);
+  friend S21Matrix operator*(const double value, const S21Matrix& other);
   bool operator==(const S21Matrix& other);
   S21Matrix& operator=(const S21Matrix& other);
   S21Matrix& operator+=(const S21Matrix& other);

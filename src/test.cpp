@@ -17,7 +17,7 @@ TEST(test_move_constructor, test_move_constructor1) {
 
   for (int i = 0; i < matrixB.getRows(); i++) {
     for (int j = 0; j < matrixB.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), matrixB(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), matrixB(i, j), EPS);
     }
   }
 }
@@ -43,7 +43,7 @@ TEST(test_sum, test_sum1) {
 
   for (int i = 0; i < matrixA.getRows(); i++) {
     for (int j = 0; j < matrixA.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), matrixA(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), matrixA(i, j), EPS);
     }
   }
 }
@@ -73,7 +73,7 @@ TEST(test_sum, test_sum2) {
 
   for (int i = 0; i < matrixA.getRows(); i++) {
     for (int j = 0; j < matrixA.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), matrixA(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), matrixA(i, j), EPS);
     }
   }
 }
@@ -81,7 +81,7 @@ TEST(test_sum, test_sum2) {
 TEST(test_sum, test_sum3) {
   S21Matrix matrixA(2, 1);
   matrixA(0, 0) = 5;
-  matrixA(0, 1) = 5;
+  matrixA(1, 0) = 5;
 
   S21Matrix matrixB(3, 2);
   matrixB(0, 0) = 1;
@@ -125,7 +125,7 @@ TEST(test_sum, test_sum4) {
 
   for (int i = 0; i < matrixA.getRows(); i++) {
     for (int j = 0; j < matrixA.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), matrixA(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), matrixA(i, j), EPS);
     }
   }
 }
@@ -150,7 +150,7 @@ TEST(test_sub, test_sub1) {
 
   for (int i = 0; i < matrixA.getRows(); i++) {
     for (int j = 0; j < matrixA.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), matrixA(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), matrixA(i, j), EPS);
     }
   }
 }
@@ -180,7 +180,7 @@ TEST(test_sub, test_sub2) {
 
   for (int i = 0; i < matrixA.getRows(); i++) {
     for (int j = 0; j < matrixA.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), matrixA(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), matrixA(i, j), EPS);
     }
   }
 }
@@ -188,7 +188,7 @@ TEST(test_sub, test_sub2) {
 TEST(test_sub, test_sub3) {
   S21Matrix matrixA(2, 1);
   matrixA(0, 0) = 1;
-  matrixA(0, 1) = 2;
+  matrixA(1, 0) = 2;
 
   S21Matrix matrixB(3, 2);
   matrixB(0, 0) = 3;
@@ -232,7 +232,7 @@ TEST(test_sub, test_sub4) {
 
   for (int i = 0; i < matrixA.getRows(); i++) {
     for (int j = 0; j < matrixA.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), matrixA(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), matrixA(i, j), EPS);
     }
   }
 }
@@ -260,7 +260,7 @@ TEST(test_mul_num, test_mul_num1) {
 
   for (int i = 0; i < matrixA.getRows(); i++) {
     for (int j = 0; j < matrixA.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), matrixA(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), matrixA(i, j), EPS);
     }
   }
 }
@@ -304,7 +304,7 @@ TEST(test_mul_num, test_mul_num2) {
 
   for (int i = 0; i < matrixA.getRows(); i++) {
     for (int j = 0; j < matrixA.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), matrixA(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), matrixA(i, j), EPS);
     }
   }
 }
@@ -334,7 +334,7 @@ TEST(test_mul, test_mul1) {
 
   for (int i = 0; i < matrixA.getRows(); i++) {
     for (int j = 0; j < matrixA.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), matrixA(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), matrixA(i, j), EPS);
     }
   }
 }
@@ -363,7 +363,7 @@ TEST(test_mul, test_mul2) {
 
   for (int i = 0; i < matrixA.getRows(); i++) {
     for (int j = 0; j < matrixA.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), matrixA(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), matrixA(i, j), EPS);
     }
   }
 }
@@ -371,7 +371,7 @@ TEST(test_mul, test_mul2) {
 TEST(test_mul, test_mul3) {
   S21Matrix matrixA(2, 1);
   matrixA(0, 0) = 1.1;
-  matrixA(0, 1) = 3;
+  matrixA(1, 0) = 3;
 
   S21Matrix matrixB(3, 2);
   matrixB(0, 0) = 1;
@@ -456,7 +456,7 @@ TEST(test_transpose, test_transpose1) {
 
   for (int i = 0; i < actual.getRows(); i++) {
     for (int j = 0; j < actual.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), actual(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), actual(i, j), EPS);
     }
   }
 }
@@ -568,7 +568,7 @@ TEST(test_calc_complements, test_calc_complements1) {
 
   for (int i = 0; i < actual.getRows(); i++) {
     for (int j = 0; j < actual.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), actual(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), actual(i, j), EPS);
     }
   }
 }
@@ -618,7 +618,7 @@ TEST(test_inverse_matrix, test_inverse_matrix1) {
 
   for (int i = 0; i < actual.getRows(); i++) {
     for (int j = 0; j < actual.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), actual(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), actual(i, j), EPS);
     }
   }
 }
@@ -660,7 +660,7 @@ TEST(test_operators, test_mul_operator_1) {
 
   for (int i = 0; i < actual.getRows(); i++) {
     for (int j = 0; j < actual.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), actual(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), actual(i, j), EPS);
     }
   }
 }
@@ -684,7 +684,7 @@ TEST(test_operators, test_mul_operator2) {
 
   for (int i = 0; i < actual.getRows(); i++) {
     for (int j = 0; j < actual.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), actual(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), actual(i, j), EPS);
     }
   }
 }
@@ -700,6 +700,30 @@ TEST(test_operators, test_mul_operator3) {
   matrixB(0, 0) = 2;
 
   ASSERT_THROW(matrixA * matrixB, std::invalid_argument);
+}
+
+TEST(test_operators, test_mul_operator4) {
+  S21Matrix expected(2, 2);
+  expected(0, 0) = 4;
+  expected(0, 1) = 10;
+  expected(1, 0) = 12;
+  expected(1, 1) = 6;
+
+  S21Matrix matrixA(2, 2);
+  matrixA(0, 0) = 2;
+  matrixA(0, 1) = 5;
+  matrixA(1, 0) = 6;
+  matrixA(1, 1) = 3;
+
+  S21Matrix actual = 2 * matrixA;
+
+  ASSERT_EQ(actual.getCols(), expected.getCols());
+
+  for (int i = 0; i < actual.getRows(); i++) {
+    for (int j = 0; j < actual.getCols(); j++) {
+      ASSERT_NEAR(expected(i, j), actual(i, j), EPS);
+    }
+  }
 }
 
 TEST(test_operators, test_sum_operator1) {
@@ -722,7 +746,7 @@ TEST(test_operators, test_sum_operator1) {
 
   for (int i = 0; i < actual.getRows(); i++) {
     for (int j = 0; j < actual.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), actual(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), actual(i, j), EPS);
     }
   }
 }
@@ -761,7 +785,7 @@ TEST(test_operators, test_sub_operator1) {
 
   for (int i = 0; i < actual.getRows(); i++) {
     for (int j = 0; j < actual.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), actual(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), actual(i, j), EPS);
     }
   }
 }
@@ -827,7 +851,7 @@ TEST(test_operators, test_assignment1) {
 
   for (int i = 0; i < actual.getRows(); i++) {
     for (int j = 0; j < actual.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), actual(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), actual(i, j), EPS);
     }
   }
 }
@@ -855,7 +879,7 @@ TEST(test_operators, test_addition_assignment1) {
 
   for (int i = 0; i < actual.getRows(); i++) {
     for (int j = 0; j < actual.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), actual(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), actual(i, j), EPS);
     }
   }
 }
@@ -909,7 +933,7 @@ TEST(test_operators, test_multiplication_assignment1) {
 
   for (int i = 0; i < actual.getRows(); i++) {
     for (int j = 0; j < actual.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), actual(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), actual(i, j), EPS);
     }
   }
 }
@@ -933,7 +957,7 @@ TEST(test_operators, test_multiplication_assignment2) {
 
   for (int i = 0; i < actual.getRows(); i++) {
     for (int j = 0; j < actual.getCols(); j++) {
-      ASSERT_NEAR(expected(i, j), actual(i, j), 1e-7);
+      ASSERT_NEAR(expected(i, j), actual(i, j), EPS);
     }
   }
 }

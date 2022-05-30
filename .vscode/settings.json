@@ -3,6 +3,7 @@
     "stdexcept": "cpp",
     "__errc": "cpp",
     "bitset": "cpp",
-    "new": "cpp"
+    "new": "cpp",
+    "iostream": "cpp"
   }
 }

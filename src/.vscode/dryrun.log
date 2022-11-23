@@ -1,10 +1,9 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/xerminia/Documents/matrix/src'
+make --dry-run --keep-going --print-directory
+make: Entering directory `/Users/lolli/Documents/github/matrix/src'
 rm -rf *.a *.o test gcov *.info report *.dSYM *.gc*
-g++ -g -std=c++17 -c -Wall -Werror -Wextra s21_matrix_oop.cpp -o s21_matrix_oop.o
-ar rcs s21_matrix_oop.a s21_matrix_oop.o
-g++ -g -std=c++17 -c -Wall -Werror -Wextra test.cpp -o test.o
-g++ -g -std=c++17 s21_matrix_oop.a test.o -o test -lgtest
+g++ -std=c++17  -c -Wall -Werror -Wextra -fsanitize=address matrix.cpp -o matrix.o
+ar rcs matrix.a matrix.o
+g++ -std=c++17  matrix.cpp test.cpp -o test -lgtest
 ./test
-make: Leaving directory `/Users/xerminia/Documents/matrix/src'
+make: Leaving directory `/Users/lolli/Documents/github/matrix/src'
  

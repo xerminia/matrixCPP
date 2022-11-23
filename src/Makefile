@@ -1,27 +1,24 @@
-CXX = g++ -std=c++17 -fsanitize=address
-CFLAG = -c -Wall -Werror -Wextra
+CXX = g++ -std=c++17 
+CFLAG = -c -Wall -Werror -Wextra -fsanitize=address
 GCOVFLAG = -fprofile-arcs -ftest-coverage
 GTESTFLAGS = -lgtest
-CPPFILE = s21_matrix_oop.cpp
-OFILE = s21_matrix_oop.o
+CPPFILE = matrix.cpp
+OFILE = matrix.o
 
-all: clean s21_matrix_oop.a test
+all: clean matrix.a test
 
-s21_matrix_oop.o:
-	$(CXX) $(CFLAG) s21_matrix_oop.cpp -o s21_matrix_oop.o
+matrix.o:
+	$(CXX) $(CFLAG) matrix.cpp -o matrix.o
 
-test.o:
-	$(CXX) $(CFLAG) test.cpp -o test.o
+matrix.a: $(OFILE)
+	ar rcs matrix.a $(OFILE)
 
-s21_matrix_oop.a: $(OFILE)
-	ar rcs s21_matrix_oop.a $(OFILE)
-
-test: s21_matrix_oop.a test.o
-	$(CXX) s21_matrix_oop.a test.o -o test $(GTESTFLAGS)
+test: matrix.a
+	$(CXX) matrix.cpp test.cpp -o test $(GTESTFLAGS)
 	./test
 
 gcov_report: clean test.o
-	$(CXX) $(CFLAG) $(GCOVFLAG) s21_matrix_oop.cpp -o s21_matrix_oop.o
+	$(CXX) $(CFLAG) $(GCOVFLAG) matrix.cpp -o matrix.o
 	$(CXX) $(GCOVFLAG) $(OFILE) test.o -o gcov $(GTESTFLAGS)
 	./gcov
 	lcov -t "gcov_report" -o gcov_report.info -c -d ./

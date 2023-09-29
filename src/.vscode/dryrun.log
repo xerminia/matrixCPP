@@ -1,9 +1,0 @@
-make --dry-run --keep-going --print-directory
-make: Entering directory `/Users/lolli/Documents/github/matrix/src'
-rm -rf *.a *.o test gcov *.info report *.dSYM *.gc*
-g++ -std=c++17  -c -Wall -Werror -Wextra -fsanitize=address matrix.cpp -o matrix.o
-ar rcs matrix.a matrix.o
-g++ -std=c++17  matrix.cpp test.cpp -o test -lgtest
-./test
-make: Leaving directory `/Users/lolli/Documents/github/matrix/src'
- 
